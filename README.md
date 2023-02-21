@@ -1,5 +1,7 @@
 # Getting Started
 
+# Classroom project for SE-016 Web applications
+
 ### Reference Documentation
 For further reference, please consider the following sections:
 
