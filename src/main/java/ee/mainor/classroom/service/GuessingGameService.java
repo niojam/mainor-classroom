@@ -32,7 +32,7 @@ public class GuessingGameService {
         if (guessingGame.getCorrectNumber() > number) {
             gameResponse.setTextResponse("Nr smaller");
         } else if (guessingGame.getCorrectNumber() < number) {
-            gameResponse.setTextResponse("Nr bigger than correct number");
+            gameResponse.setTextResponse("Nr bigger than correct correct number");
         }
         else gameResponse.setTextResponse("Congrats");
         return gameResponse;
