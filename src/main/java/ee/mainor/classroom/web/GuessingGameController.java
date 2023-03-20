@@ -18,12 +18,12 @@ public class GuessingGameController {
     private final GuessingGameService guessingGameService;
 
     @PostMapping
-    public UUID createGuessingGame(@RequestBody GameCreationRequest gameCreationRequest) {
+    public Long createGuessingGame(@RequestBody GameCreationRequest gameCreationRequest) {
         return guessingGameService.createGuessingGame(gameCreationRequest);
     }
 
     @GetMapping("/guess/{number}")
-    public GameResponse playGame(@RequestParam UUID gameId, @PathVariable Integer number) {
+    public GameResponse playGame(@RequestParam Long gameId, @PathVariable Integer number) {
         return guessingGameService.playGame(gameId, number);
     }
 

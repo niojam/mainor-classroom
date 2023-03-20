@@ -17,11 +17,11 @@ import java.util.UUID;
 public class GuessingGame {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
-    @Column(name = "correct_number")
+    @Column(name = "correct_answer")
     private Integer correctNumber;
 
 }

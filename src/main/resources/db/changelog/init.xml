@@ -5,13 +5,10 @@
 
     <changeSet author="nikita.ojamae" id="init-schema">
         <sql splitStatements="false">
-            CREATE TABLE tabl_test
+            CREATE TABLE game
             (
                 id             SERIAL PRIMARY KEY,
-                correct_answer INTEGER,
-                name           VARCHAR(255),
-                a              decimal,
-                b              varchar
+                correct_answer INTEGER
             );
         </sql>
     </changeSet>

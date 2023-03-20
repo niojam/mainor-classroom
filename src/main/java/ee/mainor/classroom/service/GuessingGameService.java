@@ -16,13 +16,13 @@ public class GuessingGameService {
 
     private final GuessingGameRepository gameRepository;
 
-    public UUID createGuessingGame(GameCreationRequest gameCreationRequest) {
+    public Long createGuessingGame(GameCreationRequest gameCreationRequest) {
         GuessingGame guessingGame = new GuessingGame();
         guessingGame.setCorrectNumber(gameCreationRequest.getCorrectNumber());
         return gameRepository.save(guessingGame).getId();
     }
 
-    public GameResponse playGame(UUID gameId, Integer number) {
+    public GameResponse playGame(Long gameId, Integer number) {
         GuessingGame guessingGame = gameRepository.findById(gameId)
                 .orElseThrow(() -> new EntityNotFoundException("Game with given UUID does not eist"));
 
