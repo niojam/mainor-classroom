@@ -2,31 +2,36 @@ package ee.mainor.classroom.service;
 
 import ee.mainor.classroom.dto.GameCreationRequest;
 import ee.mainor.classroom.dto.GameResponse;
+import ee.mainor.classroom.model.GuessingGame;
+import ee.mainor.classroom.repository.GuessingGameRepository;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class GuessingGameService {
 
-    private final Random random = new Random();
-    private Map<Integer, Integer> games = new HashMap<>();
+    private final GuessingGameRepository gameRepository;
 
-    public Integer createGuessingGame(GameCreationRequest gameCreationRequest) {
-        Integer id = random.nextInt();
-        games.put(id, gameCreationRequest.getCorrectNumber());
-        return id;
+    public UUID createGuessingGame(GameCreationRequest gameCreationRequest) {
+        GuessingGame guessingGame = new GuessingGame();
+        guessingGame.setCorrectNumber(gameCreationRequest.getCorrectNumber());
+        return gameRepository.save(guessingGame).getId();
     }
 
-    public GameResponse playGame(Integer gameId, Integer number) {
-        Integer correctNumber = games.get(gameId);
+    public GameResponse playGame(UUID gameId, Integer number) {
+        GuessingGame guessingGame = gameRepository.findById(gameId)
+                .orElseThrow(() -> new EntityNotFoundException("Game with given UUID does not eist"));
+
+
         GameResponse gameResponse = new GameResponse();
 
-        if (correctNumber > number) {
+        if (guessingGame.getCorrectNumber() > number) {
             gameResponse.setTextResponse("Nr smaller");
-        } else if (correctNumber < number) {
+        } else if (guessingGame.getCorrectNumber() < number) {
             gameResponse.setTextResponse("Nr bigger than correct number");
         }
         else gameResponse.setTextResponse("Congrats");

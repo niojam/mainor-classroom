@@ -11,8 +11,17 @@ import org.springframework.web.bind.annotation.*;
 // #TODO ADD Configuration for db
 // #TODO INIT SQL FILES
 // #TODO create model
+
+
 // #TODO create repository
-// #TODO create
+
+
+
+// TODO add docker-compose
+// TODO add liquibase
+// TODO add changelog
+// TODO update your application.properties file
+// TODO Test your application
 
 @RestController
 @RequestMapping("/hello")
