@@ -10,7 +10,7 @@
                 id          SERIAL PRIMARY KEY,
                 name        varchar(255),
                 description varchar,
-                created_at  timestamp,
+                created_at  timestamp DEFAULT NOW(),
                 created_by  varchar(255),
                 updated_at  timestamp,
                 updated_by  varchar(255)
@@ -20,7 +20,7 @@
             (
                 id         SERIAL PRIMARY KEY,
                 name       varchar(255),
-                created_at timestamp,
+                created_at timestamp DEFAULT NOW(),
                 created_by varchar(255),
                 updated_at timestamp,
                 updated_by varchar(255)
@@ -32,26 +32,50 @@
                 content_type varchar(255),
                 name         varchar(255),
                 content      bytea,
-                created_at timestamp,
-                created_by varchar(255),
-                updated_at timestamp,
-                updated_by varchar(255)
+                created_at   timestamp DEFAULT NOW(),
+                created_by   varchar(255),
+                updated_at   timestamp,
+                updated_by   varchar(255)
             );
 
             CREATE TABLE product
             (
-                id SERIAL PRIMARY KEY,
-                name varchar(255),
-                description varchar,
-                price decimal,
-                product_category INTEGER REFERENCES product_category (id),
-                manufacturer INTEGER REFERENCES manufacturer (id),
-                image INTEGER REFERENCES image (id),
-                created_at timestamp,
-                created_by varchar(255),
-                updated_at timestamp,
-                updated_by varchar(255)
+                id               SERIAL PRIMARY KEY,
+                name             varchar(255)                             NOT NULL,
+                description      varchar,
+                price            decimal                                  NOT NULL,
+                currency         varchar(3),
+                product_category INTEGER REFERENCES product_category (id) NOT NULL,
+                manufacturer     INTEGER REFERENCES manufacturer (id)     NOT NULL,
+                image            INTEGER REFERENCES image (id),
+                created_at       timestamp DEFAULT NOW(),
+                created_by       varchar(255),
+                updated_at       timestamp,
+                updated_by       varchar(255)
             );
         </sql>
     </changeSet>
+
+    <changeSet author="nikita.ojamae" id="init-data">
+        <sql splitStatements="false">
+
+            INSERT INTO product_category (id, name, description, created_by)
+            VALUES (1, 'Electronics', 'Test description', 'admin'),
+                   (2, 'Clothes', 'Something to wear', 'admin');
+
+        </sql>
+    </changeSet>
+
+    <changeSet author="nikita.ojamae" id="init-data-2">
+        <sql splitStatements="false">
+
+            INSERT INTO manufacturer (id, name, created_by)
+            VALUES (1, 'Samsung', 'admin'),
+                   (2, 'BOSS', 'admin');
+
+            INSERT INTO product (id, name, description, price, currency, product_category, manufacturer, created_by)
+            VALUES (1, 'Samsung Galaxy S14', 'Best phone ever', 999.99, 'EUR', 1, 1, 'admin')
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
