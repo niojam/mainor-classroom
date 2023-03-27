@@ -6,15 +6,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GreetingService {
-
-    private GreetingRepo greetingRepo;
-
-    @Autowired
-    public GreetingService(GreetingRepo greetingRepo) {
-        this.greetingRepo = greetingRepo;
-    }
     public String sayHelloEveryone(String name, String lastName) {
-        return greetingRepo.save(name, lastName);
+        return null;
     }
 
 }

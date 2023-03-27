@@ -5,10 +5,52 @@
 
     <changeSet author="nikita.ojamae" id="init-schema">
         <sql splitStatements="false">
-            CREATE TABLE game
+            CREATE TABLE product_category
             (
-                id             SERIAL PRIMARY KEY,
-                correct_answer INTEGER
+                id          SERIAL PRIMARY KEY,
+                name        varchar(255),
+                description varchar,
+                created_at  timestamp,
+                created_by  varchar(255),
+                updated_at  timestamp,
+                updated_by  varchar(255)
+            );
+
+            CREATE TABLE manufacturer
+            (
+                id         SERIAL PRIMARY KEY,
+                name       varchar(255),
+                created_at timestamp,
+                created_by varchar(255),
+                updated_at timestamp,
+                updated_by varchar(255)
+            );
+
+            CREATE TABLE image
+            (
+                id           SERIAL PRIMARY KEY,
+                content_type varchar(255),
+                name         varchar(255),
+                content      bytea,
+                created_at timestamp,
+                created_by varchar(255),
+                updated_at timestamp,
+                updated_by varchar(255)
+            );
+
+            CREATE TABLE product
+            (
+                id SERIAL PRIMARY KEY,
+                name varchar(255),
+                description varchar,
+                price decimal,
+                product_category INTEGER REFERENCES product_category (id),
+                manufacturer INTEGER REFERENCES manufacturer (id),
+                image INTEGER REFERENCES image (id),
+                created_at timestamp,
+                created_by varchar(255),
+                updated_at timestamp,
+                updated_by varchar(255)
             );
         </sql>
     </changeSet>

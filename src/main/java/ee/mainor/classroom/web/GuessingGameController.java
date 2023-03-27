@@ -2,9 +2,7 @@ package ee.mainor.classroom.web;
 
 import ee.mainor.classroom.dto.GameCreationRequest;
 import ee.mainor.classroom.dto.GameResponse;
-import ee.mainor.classroom.repository.GuessingGameRepository;
 import ee.mainor.classroom.service.GuessingGameService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

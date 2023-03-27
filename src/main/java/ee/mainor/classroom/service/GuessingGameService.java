@@ -2,8 +2,6 @@ package ee.mainor.classroom.service;
 
 import ee.mainor.classroom.dto.GameCreationRequest;
 import ee.mainor.classroom.dto.GameResponse;
-import ee.mainor.classroom.model.GuessingGame;
-import ee.mainor.classroom.repository.GuessingGameRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
