@@ -10,16 +10,22 @@ import lombok.experimental.Accessors;
 @Entity
 @Getter
 @Setter
-@Table(name = "manufacturer")
+@Table(name = "image")
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Manufacturer extends AuditableEntity {
+public class Image extends AuditableEntity {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String contentType;
+
     private String name;
+
+    private byte[] content;
+
 
 }

@@ -11,4 +11,12 @@ public class ProductCategoryMapper {
         return new ProductCategoryDto(productCategory.getId(), productCategory.getName());
     }
 
+    public ProductCategory toEntity(ProductCategoryDto productCategoryDto) {
+        ProductCategory productCategory = new ProductCategory();
+        productCategory.setId(productCategoryDto.getId());
+        productCategory.setName(productCategoryDto.getName());
+        productCategory.setDescription(productCategory.getDescription());
+        return productCategory;
+    }
+
 }
