@@ -19,6 +19,7 @@ public class ProductMapper {
         return new ProductPreviewDto().setId(product.getId())
                 .setName(product.getName())
                 .setCurrency(product.getCurrency())
+                .setDescription(product.getDescription())
                 .setPrice(product.getPrice()).setImageId(product.getImageId());
     };
 

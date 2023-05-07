@@ -14,5 +14,6 @@ public class ProductPreviewDto {
     private BigDecimal price;
     private String currency;
     private Long imageId;
+    private String description;
 
 }
